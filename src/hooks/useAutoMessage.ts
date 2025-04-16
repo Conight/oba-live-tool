@@ -20,7 +20,8 @@ interface AutoMessageConfig {
     interval: [number, number] // [最小间隔, 最大间隔]
   }
   messages: Message[]
-  random: boolean,
+  random: boolean
+  extraSpaces: boolean
   baseContent: string
 }
 
@@ -37,6 +38,7 @@ const defaultContext = (): AutoMessageContext => ({
     },
     messages: [],
     random: false,
+    extraSpaces: false,
     baseContent: '',
   },
 })
@@ -199,6 +201,7 @@ export const useAutoMessageActions = () => {
       setScheduler: (scheduler: AutoMessageConfig['scheduler']) => updateConfig({ scheduler }),
       setMessages: (messages: Message[]) => updateConfig({ messages }),
       setRandom: (random: boolean) => updateConfig({ random }),
+      setExtraSpaces: (extraSpaces: boolean) => updateConfig({ extraSpaces }),
       setBaseContent: (baseContent: string) => updateConfig({ baseContent }),
       generateMessages: (content: String) => {
         generateMessages(content)
